@@ -99,6 +99,7 @@ def get_chat_session():
                     mombasa
                     naacp
                     norinko
+                    plimpton
                     """.strip(),
                 ],
             },
@@ -124,6 +125,7 @@ def get_chat_session():
                     mombasa,モンバサ
                     naacp,エヌエーエーシーピー
                     norinko,ノリンコ
+                    plimpton,プリンプトン
                     """.strip(),
                 ],
             },
