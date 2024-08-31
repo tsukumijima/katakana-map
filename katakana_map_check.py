@@ -75,3 +75,17 @@ for key, value in sorted(DATA_KATAKANA_MAP.items()):
         pass
     elif KATAKANA_MAP[key] != value:
         print(f"Value mismatch for key '{key}': KATAKANA_MAP has '{KATAKANA_MAP[key]}', data.py has '{value}'.")
+
+# data.py の KATAKANA_MAP と元の KATAKANA_MAP をマージ
+merged_katakana_map = KATAKANA_MAP.copy()
+merged_katakana_map.update(DATA_KATAKANA_MAP)
+
+# アルファベット順にソート（キーのみ）
+merged_katakana_map = dict(sorted(merged_katakana_map.items(), key=lambda x: x[0].lower()))
+
+# マージされた辞書を katakana_map_merged.json に保存
+with open(current_dir / "katakana_map_merged.json", "w", encoding="utf-8") as f:
+    json.dump(merged_katakana_map, f, ensure_ascii=False, indent=4)
+
+print("Merged katakana map has been saved to katakana_map_merged.json")
+
