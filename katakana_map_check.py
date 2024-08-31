@@ -80,6 +80,13 @@ for key, value in sorted(DATA_KATAKANA_MAP.items()):
 merged_katakana_map = KATAKANA_MAP.copy()
 merged_katakana_map.update(DATA_KATAKANA_MAP)
 
+# fix_s の内容で上書き
+with open(current_dir / "katakana_map_fix_s.json", "r") as f:
+    fix_s_map = json.load(f)
+
+for key, value in fix_s_map.items():
+    merged_katakana_map[key] = value
+
 # アルファベット順にソート（キーのみ）
 merged_katakana_map = dict(sorted(merged_katakana_map.items(), key=lambda x: x[0].lower()))
 
@@ -88,4 +95,28 @@ with open(current_dir / "katakana_map_merged.json", "w", encoding="utf-8") as f:
     json.dump(merged_katakana_map, f, ensure_ascii=False, indent=4)
 
 print("Merged katakana map has been saved to katakana_map_merged.json")
+
+# 末尾が 's' で終わる単語のチェック
+invalid_plural_keys = []
+
+for key, value in merged_katakana_map.items():
+    if key.endswith("s") and not (
+        value.endswith("ス")
+        or value.endswith("ズ")
+        or value.endswith("ツ")
+        or value.endswith("ヅ")
+    ):
+        invalid_plural_keys.append(key)
+
+# 結果の出力
+if invalid_plural_keys:
+    print(
+        "\nFollowing keys ending with 's' have values not ending with 'ス' or 'ズ' or 'ツ' or 'ヅ':"
+    )
+    for key in invalid_plural_keys:
+        print(f"- {key}: {merged_katakana_map[key]}")
+else:
+    print(
+        "\nAll plural words (ending with 's') have correct katakana endings ('ス' or 'ズ' or 'ツ' or 'ヅ')."
+    )
 
