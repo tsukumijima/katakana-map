@@ -96,6 +96,7 @@ def get_chat_session():
                     judo
                     jujitsu
                     kuwaiti
+                    mombasa
                     """.strip(),
                 ],
             },
@@ -118,6 +119,7 @@ def get_chat_session():
                     judo,ジュウドー
                     jujitsu,ジュジツ
                     kuwaiti,クウェーティ
+                    mombasa,モンバサ
                     """.strip(),
                 ],
             },
