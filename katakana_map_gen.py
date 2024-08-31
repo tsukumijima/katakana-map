@@ -57,7 +57,7 @@ model = genai.GenerativeModel(
 - "directv" のような英語の固有名詞であっても、必ずアルファベットを用いず発音のカタカナ英語で変換すること。 例: "directv" → "ディレクティービー"
 - "extrasensory" のような複雑な英語の名詞であっても、必ずアルファベットを用いず発音のカタカナ英語で変換すること。 例: "extrasensory" → "エクストラセンソリー"
 - "fenech" のようなマイナーな人名であっても、必ずアルファベットを用いず発音のカタカナ英語で変換すること。 例: "fenech" → "フェネッチ"
-- "honduran" のような国名や国の人々の名前であっても、"ホンジュラス人" とはせず、必ずカタカナ英語で変換すること。 例: "honduran" → "ホンジュラン"
+- "honduran" のような国名や国の人々の名前であっても、"ホンジュラス人" とはせず、必ずカタカナ英語で変換すること。 例: "honduran" → "ホンジュラン", "kuwaiti" → "クウェーティ"
 - 長音符（ー）を適切に使用すること。例: "computer" → "コンピューター"
 - 促音や拗音を正確に表現すること。例: "application" → "アプリケーション"
 - 複数形はちゃんと s をカタカナで表現すること。例: "apples" → "アップルズ"
@@ -93,6 +93,9 @@ def get_chat_session():
                     aalseth
                     alpern
                     fenech
+                    judo
+                    jujitsu
+                    kuwaiti
                     """.strip(),
                 ],
             },
@@ -112,6 +115,9 @@ def get_chat_session():
                     aalseth,オルセス
                     alpern,アルペルン
                     fenech,フェネック
+                    judo,ジュウドー
+                    jujitsu,ジュジツ
+                    kuwaiti,クウェーティ
                     """.strip(),
                 ],
             },
