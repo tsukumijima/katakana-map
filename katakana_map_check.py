@@ -66,3 +66,12 @@ else:
     print(
         "\nAll plural words (ending with 's') have correct katakana endings ('ス' or 'ズ' or 'ツ' or 'ヅ')."
     )
+
+# 手動で作られた data.py 内の KATAKANA_MAP 内の値と一致しないものをチェック
+from data import KATAKANA_MAP as DATA_KATAKANA_MAP
+
+for key, value in sorted(DATA_KATAKANA_MAP.items()):
+    if key not in KATAKANA_MAP:
+        pass
+    elif KATAKANA_MAP[key] != value:
+        print(f"Value mismatch for key '{key}': KATAKANA_MAP has '{KATAKANA_MAP[key]}', data.py has '{value}'.")
