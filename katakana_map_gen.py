@@ -97,6 +97,7 @@ def get_chat_session():
                     jujitsu
                     kuwaiti
                     mombasa
+                    naacp
                     """.strip(),
                 ],
             },
@@ -120,6 +121,7 @@ def get_chat_session():
                     jujitsu,ジュジツ
                     kuwaiti,クウェーティ
                     mombasa,モンバサ
+                    naacp,エヌエーエーシーピー
                     """.strip(),
                 ],
             },
