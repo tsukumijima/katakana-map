@@ -193,7 +193,7 @@ for i in range(0, total_words, SIMUL_WORD_COUNT):
                 )
                 # ダミー単語を追加
                 # 処理対象の単語リストに含まれないダミーワードを追加
-                dummy_words = ['apple', 'banana', 'cherry', 'date']
+                dummy_words = ['apple', 'banana', 'cherry', 'date', 'watermelon']
                 dummy_words = [word for word in dummy_words if word not in chunk]
                 input_text_with_dummy = "\n".join(chunk + dummy_words)
                 response = get_chat_session().send_message(input_text_with_dummy)
