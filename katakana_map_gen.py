@@ -91,6 +91,7 @@ def get_chat_session():
                     aalen
                     aaliyah
                     aalseth
+                    alpern
                     fenech
                     """.strip(),
                 ],
@@ -109,6 +110,7 @@ def get_chat_session():
                     aalen,アーレン
                     aaliyah,アリーヤ
                     aalseth,オルセス
+                    alpern,アルペルン
                     fenech,フェネック
                     """.strip(),
                 ],
@@ -193,7 +195,7 @@ for i in range(0, total_words, SIMUL_WORD_COUNT):
                 # レスポンスの解析
                 csv_reader = csv.reader(io.StringIO(response.text))
                 current_entries = {
-                    row[0]: row[1] for row in csv_reader if len(row) == 2
+                    row[0]: row[1].replace(' ', '') for row in csv_reader if len(row) == 2
                 }
 
                 # ダミー単語を除去
@@ -257,12 +259,9 @@ for i in range(0, total_words, SIMUL_WORD_COUNT):
             print("Moving to the next chunk due to persistent errors.")
             break
 
-    # アルファベット順にソート（キーのみ）
-    sorted_entries = dict(sorted(new_entries.items(), key=lambda x: x[0].lower()))
-
     # 念のためカタカナ語に対し正規化を実行
     sorted_entries = {
-        key: normalize_katakana(value) for key, value in sorted_entries.items()
+        key: normalize_katakana(value) for key, value in new_entries.items()
     }
 
     # katakana_map.jsonの更新
@@ -270,6 +269,9 @@ for i in range(0, total_words, SIMUL_WORD_COUNT):
     print(
         f"Added {len(sorted_entries)} new entries to katakana_map. Total entries: {len(katakana_map)}"
     )
+
+    # アルファベット順にソート（キーのみ）
+    katakana_map = dict(sorted(katakana_map.items(), key=lambda x: x[0].lower()))
 
     # 途中経過の保存
     with open(current_dir / "katakana_map.json", "w", encoding="utf-8") as f:
