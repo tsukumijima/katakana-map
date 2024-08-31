@@ -147,7 +147,7 @@ with open(current_dir / "katakana_map.json", "r") as f:
 
 # 500 単語ずつ処理
 total_words = len(words)
-SIMUL_WORD_COUNT = 500
+SIMUL_WORD_COUNT = 50
 
 
 def normalize_katakana(text):
