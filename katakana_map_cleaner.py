@@ -78,7 +78,11 @@ for key, value in sorted(DATA_KATAKANA_MAP.items()):
 
 # data.py の KATAKANA_MAP と元の KATAKANA_MAP をマージ
 merged_katakana_map = KATAKANA_MAP.copy()
-merged_katakana_map.update(DATA_KATAKANA_MAP)
+for key, value in DATA_KATAKANA_MAP.items():
+    # 値に "トゥ" が含まれ、かつ元の KATAKANA_MAP にキーが存在する場合は元の KATAKANA_MAP の値を優先
+    if "トゥ" in value and key in merged_katakana_map:
+        continue
+    merged_katakana_map[key] = value
 
 # fix_s の内容で上書き
 with open(current_dir / "katakana_map_fix_s.json", "r") as f:
