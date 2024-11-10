@@ -2312,7 +2312,7 @@ KATAKANA_MAP = {
     "utilises": "ユーティライジズ",
     "utilise": "ユーティライズ",
     "utilisation": "ユーティリゼイション",
-    "util": "ユティル",
+    "util": "ユーティル",
     "utica": "ユーティカ",
     "uterus": "ユータリス",
     "utero": "ユーテロ",
