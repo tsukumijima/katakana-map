@@ -55,6 +55,9 @@ def main() -> None:
         result = process_line(line)
         if result:
             word, kana = result
+            # 「ヴ」で終わる場合は「ブ」に変換
+            if kana.endswith('ヴ'):
+                kana = kana[:-1] + 'ブ'
             katakana_map[word] = kana
 
     # ブラックリストキーを削除
@@ -124,6 +127,7 @@ def main() -> None:
         "MATLAB",
         "MACHINE",
         "machine",
+        "LIVE",
         "Lass",
         "Langsam",
         "Jose",
