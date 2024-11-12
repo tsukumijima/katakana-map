@@ -74,7 +74,8 @@ for key, value in sorted(DATA_KATAKANA_MAP.items()):
     if key not in KATAKANA_MAP:
         pass
     elif KATAKANA_MAP[key] != value:
-        print(f"Value mismatch for key '{key}': KATAKANA_MAP has '{KATAKANA_MAP[key]}', data.py has '{value}'.")
+        # print(f"Value mismatch for key '{key}': KATAKANA_MAP has '{KATAKANA_MAP[key]}', data.py has '{value}'.")
+        pass
 
 # data.py の KATAKANA_MAP と元の KATAKANA_MAP をマージ
 merged_katakana_map = KATAKANA_MAP.copy()
@@ -102,6 +103,17 @@ with open(current_dir / "katakana_map_manual_proper_noun.json", "w", encoding="u
 
 for key, value in manual_proper_noun_map.items():
     merged_katakana_map[key.lower()] = value
+
+# katakana_map_jawiki.json の内容を追加
+with open(current_dir / 'katakana_map_jawiki.json', 'r', encoding='utf-8') as f:
+    jawiki_map = json.load(f)
+
+# 全てのキーを小文字に変換して追加。既存のキーと読みが異なる場合は jawiki 版を優先
+for key, value in jawiki_map.items():
+    lower_key = key.lower()
+    if lower_key in merged_katakana_map and merged_katakana_map[lower_key] != value:
+        print(f"Value mismatch: Original has '{merged_katakana_map[lower_key]}', Jawiki has '{value}' / {lower_key}")
+    merged_katakana_map[lower_key] = value
 
 # アルファベット順にソート（キーのみ）
 merged_katakana_map = dict(sorted(merged_katakana_map.items(), key=lambda x: x[0].lower()))
