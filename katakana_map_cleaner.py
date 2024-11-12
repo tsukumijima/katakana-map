@@ -115,6 +115,25 @@ for key, value in jawiki_map.items():
         print(f"Value mismatch: Original has '{merged_katakana_map[lower_key]}', Jawiki has '{value}' / {lower_key}")
     merged_katakana_map[lower_key] = value
 
+# katakana_map_manual_acronym.json の内容を追加
+with open(current_dir / 'katakana_map_manual_acronym.json', 'r', encoding='utf-8') as f:
+    acronym_map = json.load(f)
+
+# acronym_map から小文字を含むキーを削除
+acronym_map = {k: v for k, v in acronym_map.items() if k.isupper()}
+
+# acronym_map をソートして重複を削除
+acronym_map = dict(sorted(acronym_map.items(), key=lambda x: x[0].lower()))
+
+# ソート済みの acronym_map を保存
+with open(current_dir / 'katakana_map_manual_acronym.json', 'w', encoding='utf-8') as f:
+    json.dump(acronym_map, f, ensure_ascii=False, indent=4)
+
+# 頭字語は全て大文字キーとして追加
+for key, value in acronym_map.items():
+    upper_key = key.upper()
+    merged_katakana_map[upper_key] = value
+
 # アルファベット順にソート（キーのみ）
 merged_katakana_map = dict(sorted(merged_katakana_map.items(), key=lambda x: x[0].lower()))
 
